@@ -6,11 +6,9 @@ const router = express.Router();
 router.use(express.json())
 
 router.get("/balance", authMiddleware, async (req, res) => {
-    console.log("initiated")
   const account = await Account.findOne({
     userId: req.userId,
   });
-  console.log("reached here")
   res.json({
     balance: account.balance,
   });

@@ -62,9 +62,8 @@ router.post("/signup", async (req, res) => {
   });
 });
 
-router.post("/login", async (req, res) => {
+router.post("/signin", async (req, res) => {
   const body = req.body;
-  console.log(body)
   const parsedBody = loginBody.safeParse(body);
   if (!parsedBody.success) {
     return res.status(411).json({
@@ -72,8 +71,7 @@ router.post("/login", async (req, res) => {
     });
   }
   const user = await User.findOne({
-    username: body.username,
-    password: body.password,
+    username: body.username
   });
   
   
@@ -108,7 +106,7 @@ router.put("/", authMiddleware, async (req, res) => {
 
 router.get('/bulk',authMiddleware,async(req,res)=>{
     const filter=req.query.filter || "";
-   const users=await User.find({
+   const user=await User.find({
         $or: [{
             firstName: {
                 "$regex": filter
@@ -120,7 +118,7 @@ router.get('/bulk',authMiddleware,async(req,res)=>{
         }]
     })
     res.json({
-       users: users.map(user=>({
+       users: user.map(user=>({
             username:user.username,
             firstName:user.firstName,
             lastName:user.lastName,
