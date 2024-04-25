@@ -1,4 +1,4 @@
-import { memo, useMemo, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import { HeadingComp } from "./Heading";
 import { SubHeading } from "./Subheading";
 import { InputBox } from "./InputBox";
@@ -14,6 +14,12 @@ export const Signin = () => {
   const [email,setEmail]=useState('')
   const [password,setPassword]=useState('')
   const navigate=useNavigate()
+  useEffect(() => {
+    if (isAuthenticated()) {
+      navigate("/dashboard");
+    }
+  }, [])
+
 
 
   return (
@@ -38,3 +44,7 @@ export const Signin = () => {
     </div>
   );
 };
+const isAuthenticated=()=>{
+  const token=localStorage.getItem("token");
+  return !!token;
+}

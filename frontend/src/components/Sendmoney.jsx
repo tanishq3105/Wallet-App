@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom"
+import { useNavigate, useSearchParams } from "react-router-dom"
 import { Button } from "./Button"
 import { InputBox } from "./InputBox"
 import { useState } from "react";
@@ -9,6 +9,7 @@ export const SendMoney=()=>{
     const id=searchParams.get("id");
     const name=searchParams.get("name");
     const [amount,setAmount]=useState(0);
+    const navigate=useNavigate()
     return(
         <div className="flex justify-center h-screen bg-gray-100">
             <div className="h-full flex flex-col justify-center">
@@ -36,7 +37,8 @@ export const SendMoney=()=>{
                         to:id
                     },{headers:{
                         Authorization:`Bearer ${localStorage.getItem("token")}`
-                    }})
+                    }});
+                    navigate('/success')
                 }}   label={"Send Money"}/>
                 </div>
             </div>

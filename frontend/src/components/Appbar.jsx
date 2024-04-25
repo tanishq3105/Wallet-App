@@ -1,7 +1,7 @@
 export const Appbar=()=>{
     return(
         <div className="flex justify-between shadow h-14">
-            <div className="flex flex-col justify-center h-full ml-4">
+            <div className="font-mono flex flex-col justify-center h-full ml-4 font-bold text-3xl">
                 Wallet-App
             </div>
             <div className="flex ">

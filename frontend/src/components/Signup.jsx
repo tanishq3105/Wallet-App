@@ -1,4 +1,4 @@
-import { memo, useMemo, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import { HeadingComp } from "./Heading";
 import { SubHeading } from "./Subheading";
 import { InputBox } from "./InputBox";
@@ -17,6 +17,12 @@ export const Signup = () => {
   const [email,setEmail]=useState('')
   const [password,setPassword]=useState('')
   const navigate=useNavigate();
+  useEffect(() => {
+    if (isAuthenticated()) {
+      navigate("/dashboard");
+    }
+  }, [])
+
 
   return (
     <div className="bg-gradient-to-r from-pink-500 to-blue-500 h-screen flex justify-center" >
@@ -45,3 +51,8 @@ export const Signup = () => {
     </div>
   );
 };
+
+const isAuthenticated=()=>{
+  const token=localStorage.getItem("token");
+  return !!token;
+}

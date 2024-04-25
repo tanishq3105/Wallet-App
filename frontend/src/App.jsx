@@ -5,6 +5,7 @@ import { Appbar } from "./components/Appbar"
 import { Balance } from "./components/Balance"
 import { Dashboard } from "./Dashboard"
 import { SendMoney } from "./components/Sendmoney"
+import { Completed } from "./components/Completed"
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/signin" element={<Signin/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
         <Route path="/send" element={<SendMoney/>}/>
+        <Route path="/success" element={<Completed/>}/>
 
         <Route/>
       </Routes>
